@@ -75,14 +75,14 @@ export default function Hero() {
 
       {/* fades so the copy stays readable */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none feather"
         aria-hidden="true"
         style={{ zIndex: 2, background: 'linear-gradient(90deg, #000 0%, rgba(0,0,0,.85) 24%, rgba(0,0,0,.3) 44%, transparent 58%)' }}
       />
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden="true"
-        style={{ zIndex: 2, background: 'linear-gradient(180deg, rgba(0,0,0,.5) 0%, transparent 14%, transparent 80%, #000 100%)' }}
+        style={{ zIndex: 2, background: 'linear-gradient(180deg, rgba(0,0,0,.5) 0%, transparent 14%)' }}
       />
 
       {/* HUD card */}

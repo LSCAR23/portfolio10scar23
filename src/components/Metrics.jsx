@@ -64,7 +64,7 @@ export default function Metrics() {
       id="impact"
       ref={ref}
       aria-label="Impact"
-      className="relative overflow-hidden"
+      className="relative overflow-x-clip"
       style={{ padding: '96px clamp(16px, 7vw, 120px)', isolation: 'isolate' }}
     >
       <div
@@ -81,13 +81,11 @@ export default function Metrics() {
           filter: 'blur(30px)',
         }}
       />
-      <div className="hairline" aria-hidden="true" />
 
       <div className="relative mx-auto flex flex-col" style={{ zIndex: 1, maxWidth: 1200, gap: 40 }}>
         <div className="eyebrow">
           <span className="dot" />
           IMPACT
-          <span style={{ flex: 1, height: 1, background: 'var(--line)' }} />
         </div>
         <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: 24 }}>
           {METRICS.map((m) => (

@@ -22,7 +22,7 @@ const glass = {
 
 export default function Contact() {
   return (
-    <div className="relative overflow-hidden" style={{ zIndex: 1, isolation: 'isolate' }}>
+    <div className="relative overflow-x-clip" style={{ zIndex: 1, isolation: 'isolate' }}>
       {/* ambient light */}
       <div
         className="glow absolute pointer-events-none"
@@ -39,11 +39,10 @@ export default function Contact() {
         }}
       />
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none feather"
         aria-hidden="true"
-        style={{ zIndex: 0, background: 'radial-gradient(ellipse 90% 80% at 50% 45%, transparent 55%, rgba(0,0,0,.85) 100%)' }}
+        style={{ zIndex: 0, background: 'linear-gradient(90deg, rgba(0,0,0,.6), transparent 22%, transparent 78%, rgba(0,0,0,.6))' }}
       />
-      <div className="hairline" aria-hidden="true" />
 
       <section
         id="contact"
@@ -117,7 +116,6 @@ export default function Contact() {
           zIndex: 2,
           gap: 12,
           padding: '28px clamp(16px, 7vw, 120px)',
-          borderTop: '1px solid rgba(255,226,190,.1)',
           background: 'linear-gradient(180deg, rgba(0,0,0,.4), #000)',
         }}
       >

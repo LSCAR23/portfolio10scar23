@@ -61,7 +61,7 @@ export default function Stack() {
     <section
       id="stack"
       aria-label="The Arsenal"
-      className="relative overflow-hidden"
+      className="relative overflow-x-clip"
       style={{ padding: '120px clamp(16px, 7vw, 120px) 140px', isolation: 'isolate' }}
     >
       {/* warm glows */}
@@ -141,16 +141,10 @@ export default function Stack() {
 
       {/* fades */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none feather"
         aria-hidden="true"
         style={{ zIndex: 2, background: 'linear-gradient(90deg, rgba(0,0,0,.75) 0%, rgba(0,0,0,.35) 40%, transparent 62%)' }}
       />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        aria-hidden="true"
-        style={{ zIndex: 2, background: 'linear-gradient(180deg, #000 0%, transparent 16%, transparent 80%, #000 100%)' }}
-      />
-      <div className="hairline" aria-hidden="true" />
 
       <div className="relative mx-auto flex flex-col" style={{ zIndex: 3, maxWidth: 1200, gap: 48 }}>
         <div className="flex flex-col" style={{ gap: 18, maxWidth: 640 }}>

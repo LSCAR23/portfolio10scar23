@@ -166,7 +166,7 @@ export default function About() {
     <section
       id="about"
       aria-label="Behind the Code"
-      className="relative overflow-hidden"
+      className="relative overflow-x-clip"
       style={{ padding: '120px clamp(16px, 7vw, 120px)', isolation: 'isolate' }}
     >
       <div
@@ -196,11 +196,10 @@ export default function About() {
         }}
       />
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none feather"
         aria-hidden="true"
-        style={{ zIndex: 0, background: 'radial-gradient(ellipse 90% 80% at 50% 50%, transparent 55%, rgba(0,0,0,.85) 100%)' }}
+        style={{ zIndex: 0, background: 'linear-gradient(90deg, rgba(0,0,0,.6), transparent 22%, transparent 78%, rgba(0,0,0,.6))' }}
       />
-      <div className="hairline" aria-hidden="true" />
 
       <div className="relative mx-auto flex flex-wrap items-center" style={{ zIndex: 1, maxWidth: 1200, gap: 64 }}>
         <div className="flex flex-col" style={{ flex: '1 1 520px', minWidth: 0, gap: 28 }}>

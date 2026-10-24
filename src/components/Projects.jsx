@@ -160,7 +160,7 @@ export default function Projects() {
     <section
       id="projects"
       aria-label="Featured projects"
-      className="relative overflow-hidden"
+      className="relative overflow-x-clip"
       style={{ padding: '112px clamp(16px, 7vw, 120px) 128px', isolation: 'isolate', scrollMarginTop: 0 }}
     >
       {/* warm glow behind the robot */}
@@ -191,8 +191,14 @@ export default function Projects() {
           height: 1160,
           aspectRatio: '736 / 1313',
           opacity: 0.9,
-          WebkitMaskImage: 'radial-gradient(ellipse 56% 52% at 50% 42%, #000 50%, rgba(0,0,0,.5) 75%, transparent 100%)',
-          maskImage: 'radial-gradient(ellipse 56% 52% at 50% 42%, #000 50%, rgba(0,0,0,.5) 75%, transparent 100%)',
+          // Radial mask from the design, intersected with a top fade so the robot
+          // rises out of the nebula instead of starting at a straight edge.
+          WebkitMaskImage:
+            'radial-gradient(ellipse 56% 52% at 50% 42%, #000 50%, rgba(0,0,0,.5) 75%, transparent 100%), linear-gradient(180deg, transparent 0, #000 300px)',
+          maskImage:
+            'radial-gradient(ellipse 56% 52% at 50% 42%, #000 50%, rgba(0,0,0,.5) 75%, transparent 100%), linear-gradient(180deg, transparent 0, #000 300px)',
+          WebkitMaskComposite: 'source-in',
+          maskComposite: 'intersect',
         }}
       >
         <img src="/design/robot.webp" alt="" loading="lazy" decoding="async" className="block w-full h-full" />
@@ -213,16 +219,10 @@ export default function Projects() {
 
       {/* fades */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none feather"
         aria-hidden="true"
         style={{ zIndex: 2, background: 'linear-gradient(90deg, #000 0%, rgba(0,0,0,.6) 30%, transparent 55%, transparent 90%, rgba(0,0,0,.5) 100%)' }}
       />
-      <div
-        className="absolute inset-x-0 top-0 pointer-events-none"
-        aria-hidden="true"
-        style={{ zIndex: 2, height: 160, background: 'linear-gradient(180deg, #000, transparent)' }}
-      />
-      <div className="hairline" aria-hidden="true" />
 
       <div className="relative mx-auto flex flex-col" style={{ zIndex: 3, maxWidth: 1200, gap: 56 }}>
         <div className="flex flex-col" style={{ gap: 18 }}>

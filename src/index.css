@@ -182,3 +182,10 @@ a:hover { color: #fff; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* Section overlays fade out at their top and bottom edges, so no section
+   ever ends in a visible line — the nebula carries straight through. */
+.feather {
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 240px, #000 calc(100% - 240px), transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0, #000 240px, #000 calc(100% - 240px), transparent 100%);
+}
