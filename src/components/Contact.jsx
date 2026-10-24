@@ -70,7 +70,7 @@ export default function Contact() {
                 href={href}
                 target={external ? '_blank' : undefined}
                 rel={external ? 'noopener noreferrer' : undefined}
-                className="lift flex items-center text-left"
+                className="contact-link lift flex items-center text-left"
                 style={{ ...glass, gap: 14, minHeight: 64, padding: '12px 22px 12px 14px', borderRadius: 16 }}
               >
                 <span
@@ -111,7 +111,7 @@ export default function Contact() {
       </section>
 
       <footer
-        className="relative flex flex-wrap items-center justify-between"
+        className="site-footer relative flex flex-wrap items-center justify-between"
         style={{
           zIndex: 2,
           gap: 12,

@@ -167,15 +167,35 @@ a:hover { color: #fff; }
 }
 .skip-link:focus { transform: translateY(0); }
 
-/* ── Small screens: keep the art behind the copy, not over it ── */
+/* ── Tablets and phones: copy on top, art beside or below it, never under the text ── */
 @media (max-width: 860px) {
-  .hero-hand { left: 62% !important; height: 80% !important; opacity: 0.6; }
-  .projects-robot { left: 60% !important; opacity: 0.5 !important; }
-  .stack-gatling { opacity: 0.35 !important; right: -40% !important; }
+  /* Hero: text starts under the header; the hand rises from the bottom-right corner */
+  .hero-content { justify-content: flex-start !important; padding-top: 112px !important; }
+  .hero-hand {
+    left: auto !important; right: -2% !important; transform: none !important;
+    bottom: -3% !important; height: 58% !important; opacity: 0.9;
+  }
+  .hero-scroll { display: none !important; }
+  .hero-hud { display: none !important; }
+
+  .projects-robot { left: auto !important; right: -22% !important; transform: none !important; height: 760px !important; opacity: 0.6 !important; }
+  .stack-gatling { right: -24% !important; top: 0 !important; height: 860px !important; opacity: 0.5 !important; }
   .stack-rifle { display: none; }
 }
+
+/* ── Phones: smaller art so headings stay clear ── */
 @media (max-width: 640px) {
-  .hero-hand { left: 78% !important; height: 72% !important; opacity: 0.4; }
+  .hero-hand { height: 50% !important; }
+
+  /* Projects: robot sits top-right, behind the heading only */
+  .projects-robot { right: -34% !important; top: 0 !important; height: 520px !important; opacity: 0.65 !important; }
+
+  /* Arsenal: gatling top-right beside the heading, sized in px so it never spills into About */
+  .stack-gatling { right: -30% !important; top: 8px !important; height: 560px !important; opacity: 0.55 !important; }
+
+  /* Contact: equal-width channel cards, centred footer */
+  .contact-link { width: 100%; max-width: 360px; box-sizing: border-box; }
+  .site-footer { flex-direction: column; justify-content: center; text-align: center; gap: 4px !important; padding-top: 24px !important; padding-bottom: 24px !important; }
 }
 
 @media (prefers-reduced-motion: reduce) {

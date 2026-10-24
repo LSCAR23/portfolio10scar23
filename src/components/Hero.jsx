@@ -101,7 +101,7 @@ export default function Hero() {
 
       {/* content */}
       <div
-        className="relative h-full mx-auto flex flex-col justify-center"
+        className="hero-content relative h-full mx-auto flex flex-col justify-center"
         style={{ zIndex: 4, maxWidth: 1440, boxSizing: 'border-box', padding: '96px clamp(16px, 7vw, 120px) 80px' }}
       >
         <div className="flex flex-col" style={{ gap: 28, maxWidth: 760, paddingLeft: 'clamp(0px, 1.2vw, 16px)' }}>
@@ -155,7 +155,7 @@ export default function Hero() {
 
       <a
         href="#impact"
-        className="absolute flex flex-col items-center"
+        className="hero-scroll absolute flex flex-col items-center"
         aria-label="Scroll to impact"
         style={{ zIndex: 4, left: '50%', bottom: 28, transform: 'translateX(-50%)', gap: 12, fontSize: 12, letterSpacing: '.3em', color: '#9a8d7b' }}
       >

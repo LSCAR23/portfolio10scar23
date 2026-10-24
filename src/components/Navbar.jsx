@@ -30,7 +30,7 @@ export default function Navbar() {
     <header className="fixed top-0 left-0 right-0 z-50" style={{ padding: '16px clamp(16px, 7vw, 120px) 0' }}>
       <div className="glass mx-auto" style={{ maxWidth: 1200, borderRadius: 18 }}>
         <nav aria-label="Main" className="flex items-center justify-between gap-6" style={{ height: 64, padding: '0 10px 0 24px' }}>
-          <a href="#hero" style={{ fontWeight: 800, fontSize: 20, letterSpacing: '.04em', color: '#fff8ee' }}>
+          <a href="#hero" aria-label="Oscar — back to top" className="inline-flex items-center" style={{ minHeight: 44, fontWeight: 800, fontSize: 20, letterSpacing: '.04em', color: '#fff8ee' }}>
             OSCAR<span className="amber-text">.</span>
           </a>
 
