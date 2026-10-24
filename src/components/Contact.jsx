@@ -1,48 +1,69 @@
-import { ArrowUpRight, Mail } from 'lucide-react'
-
-const LinkedInIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-  </svg>
-)
-
-const GitHubIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-    <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
-  </svg>
-)
+import { ArrowUp, Code2, Mail, Send } from 'lucide-react'
 
 const CHANNELS = [
-  { Icon: () => <Mail size={14} color="#3b82f6" />, label: 'Email', href: 'mailto:laraoscar2310@gmail.com', value: 'laraoscar2310@gmail.com' },
-  { Icon: LinkedInIcon, label: 'LinkedIn', href: 'https://www.linkedin.com/in/lscar23/', value: '/in/lscar23' },
-  { Icon: GitHubIcon, label: 'GitHub', href: 'https://github.com/LSCAR23', value: 'LSCAR23' },
+  { label: 'EMAIL', value: 'laraoscar2310@gmail.com', href: 'mailto:laraoscar2310@gmail.com', icon: <Mail size={18} strokeWidth={1.8} /> },
+  {
+    label: 'LINKEDIN',
+    value: '/in/lscar23',
+    href: 'https://www.linkedin.com/in/lscar23/',
+    icon: <span style={{ fontSize: 15, fontWeight: 800 }}>in</span>,
+  },
+  { label: 'GITHUB', value: 'LSCAR23', href: 'https://github.com/LSCAR23', icon: <Code2 size={18} strokeWidth={1.8} /> },
 ]
 
-export default function Contact({ dark }) {
+const glass = {
+  background: 'linear-gradient(135deg, rgba(255,236,214,.08), rgba(255,236,214,.015))',
+  border: '1px solid var(--line)',
+  boxShadow:
+    'inset 0 1px 0 rgba(255,240,220,.12), 0 2px 0 rgba(0,0,0,.4), 0 24px 60px rgba(0,0,0,.75), 0 10px 50px -10px rgba(234,120,30,.18)',
+  WebkitBackdropFilter: 'blur(20px) saturate(150%)',
+  backdropFilter: 'blur(20px) saturate(150%)',
+}
+
+export default function Contact() {
   return (
-    <section id="contact" className="relative py-32 scroll-mt-16 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 text-center">
-        <div
-          className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-0"
-          style={{
-            width: '600px',
-            maxWidth: '100%',
-            height: '300px',
-            background: 'radial-gradient(ellipse at center, rgba(59,130,246,0.08) 0%, transparent 70%)',
-          }}
-        />
-        <h2
-          className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-4"
-          style={{ color: dark ? '#f1f5f9' : '#0f172a' }}
-        >
-          Let's build the future<span style={{ color: '#3b82f6' }}>.</span>
+    <div className="relative overflow-hidden" style={{ zIndex: 1, isolation: 'isolate' }}>
+      {/* ambient light */}
+      <div
+        className="glow absolute pointer-events-none"
+        aria-hidden="true"
+        style={{
+          zIndex: 0,
+          left: '50%',
+          top: '34%',
+          width: '70%',
+          height: '80%',
+          transform: 'translate(-50%,-50%)',
+          background: 'radial-gradient(closest-side, rgba(234,120,30,.22), rgba(160,60,10,.06) 55%, transparent)',
+          filter: 'blur(50px)',
+        }}
+      />
+      <div
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden="true"
+        style={{ zIndex: 0, background: 'radial-gradient(ellipse 90% 80% at 50% 45%, transparent 55%, rgba(0,0,0,.85) 100%)' }}
+      />
+      <div className="hairline" aria-hidden="true" />
+
+      <section
+        id="contact"
+        aria-label="Contact"
+        className="relative flex flex-col items-center text-center"
+        style={{ zIndex: 2, padding: '140px clamp(16px, 7vw, 120px) 120px', gap: 28 }}
+      >
+        <div className="eyebrow" style={{ gap: 12 }}>
+          <span className="dot" style={{ background: '#22c55e', boxShadow: '0 0 10px #22c55e' }} />
+          AVAILABLE FOR NEW PROJECTS
+        </div>
+        <h2 className="h2" style={{ fontSize: 'clamp(48px, 7vw, 80px)', fontWeight: 900, letterSpacing: '-.045em', textShadow: '0 8px 50px rgba(245,140,40,.3), 0 2px 2px rgba(0,0,0,.6)' }}>
+          Let's build the future<span className="amber-text">.</span>
         </h2>
-        <p className="text-base mb-12 max-w-lg mx-auto leading-relaxed" style={{ color: '#64748b' }}>
+        <p style={{ margin: 0, maxWidth: 560, fontSize: 18, lineHeight: 1.6, color: 'var(--text)' }}>
           Currently open to collaborations on high-impact systems and automation architectures. Let's talk.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          {CHANNELS.map(({ Icon, label, href, value }) => {
+        <div className="flex flex-wrap justify-center" style={{ gap: 16, paddingTop: 20 }}>
+          {CHANNELS.map(({ label, value, href, icon }) => {
             const external = href.startsWith('http')
             return (
               <a
@@ -50,33 +71,69 @@ export default function Contact({ dark }) {
                 href={href}
                 target={external ? '_blank' : undefined}
                 rel={external ? 'noopener noreferrer' : undefined}
-                className="glass-card flex items-center gap-3 px-5 py-3 rounded-xl group"
-                style={{ textDecoration: 'none', minWidth: '180px', justifyContent: 'center' }}
+                className="lift flex items-center text-left"
+                style={{ ...glass, gap: 14, minHeight: 64, padding: '12px 22px 12px 14px', borderRadius: 16 }}
               >
-                <div className="p-1.5 rounded-lg transition-colors duration-200" style={{ background: 'rgba(59,130,246,0.1)', color: '#3b82f6' }}>
-                  <Icon />
-                </div>
-                <div className="flex flex-col items-start">
-                  <span className="text-xs font-semibold uppercase tracking-wide" style={{ color: dark ? '#475569' : '#94a3b8' }}>
+                <span
+                  className="ico inline-flex items-center justify-center"
+                  aria-hidden="true"
+                  style={{ width: 40, height: 40, borderRadius: 11, flexShrink: 0 }}
+                >
+                  {icon}
+                </span>
+                <span className="flex flex-col" style={{ gap: 3 }}>
+                  <span className="mono" style={{ fontSize: 10, letterSpacing: '.2em', color: 'var(--muted)' }}>
                     {label}
                   </span>
-                  <span className="text-xs font-medium" style={{ color: dark ? '#94a3b8' : '#475569' }}>
-                    {value}
-                  </span>
-                </div>
-                <ArrowUpRight size={12} className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200" color="#3b82f6" />
+                  <span style={{ fontSize: 15, fontWeight: 600 }}>{value}</span>
+                </span>
               </a>
             )
           })}
         </div>
 
-        <div className="mt-12">
-          <a href="mailto:laraoscar2310@gmail.com" className="btn-primary inline-flex items-center gap-2 px-8 py-4 rounded-xl text-sm font-semibold">
-            <Mail size={16} />
-            Send me a message
-          </a>
-        </div>
-      </div>
-    </section>
+        <a
+          href="mailto:laraoscar2310@gmail.com"
+          className="glass-amber lift inline-flex items-center"
+          style={{
+            marginTop: 20,
+            gap: 10,
+            height: 58,
+            padding: '0 32px',
+            borderRadius: 14,
+            fontWeight: 700,
+            fontSize: 17,
+            boxShadow: 'inset 0 1px 0 rgba(255,255,255,.45), 0 14px 44px rgba(245,130,30,.4), 0 30px 80px -20px rgba(245,130,30,.5)',
+          }}
+        >
+          <Send size={18} strokeWidth={2} aria-hidden="true" />
+          Send me a message
+        </a>
+      </section>
+
+      <footer
+        className="relative flex flex-wrap items-center justify-between"
+        style={{
+          zIndex: 2,
+          gap: 12,
+          padding: '28px clamp(16px, 7vw, 120px)',
+          borderTop: '1px solid rgba(255,226,190,.1)',
+          background: 'linear-gradient(180deg, rgba(0,0,0,.4), #000)',
+        }}
+      >
+        <span style={{ fontWeight: 800, fontSize: 16, letterSpacing: '.04em', color: 'var(--ink)' }}>
+          OSCAR<span className="amber-text">.</span>
+        </span>
+        <span style={{ fontSize: 13, color: '#9c8f7c' }}>© {new Date().getFullYear()} Oscar. Built with precision.</span>
+        <a
+          href="#hero"
+          className="mono inline-flex items-center"
+          style={{ gap: 8, minHeight: 44, fontSize: 11, letterSpacing: '.2em', color: 'var(--label)' }}
+        >
+          BACK TO TOP
+          <ArrowUp size={14} strokeWidth={2.2} color="#fbbf24" aria-hidden="true" />
+        </a>
+      </footer>
+    </div>
   )
 }

@@ -1,14 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 
 const METRICS = [
-  { value: 70, suffix: '%', label: 'Operational Time Reduction achieved through automated microservices.' },
-  { value: 100, suffix: '%', label: 'Process Automation for high-volume customer interaction workflows.' },
-  { value: 0, suffix: '', label: 'Human Errors in mission-critical scheduling and sync systems.' },
+  { value: 70, suffix: '%', title: 'Operational time reduction', rest: 'achieved through automated microservices.' },
+  { value: 100, suffix: '%', title: 'Process automation', rest: 'for high-volume customer interaction workflows.' },
+  { value: 0, suffix: '', title: 'Human errors', rest: 'in mission-critical scheduling and sync systems.' },
 ]
 
-function useCountUp(target, duration = 1400, active = false) {
+function useCountUp(target, active, duration = 1400) {
   const [value, setValue] = useState(0)
-  const frame = useRef(null)
 
   useEffect(() => {
     if (!active || target === 0) {
@@ -16,65 +15,83 @@ function useCountUp(target, duration = 1400, active = false) {
       return
     }
     let start = null
+    let frame
     const step = (now) => {
-      start ||= now
+      start ??= now
       const progress = Math.min((now - start) / duration, 1)
-      const eased = 1 - (1 - progress) ** 3
-      setValue(Math.floor(eased * target))
-      if (progress < 1) frame.current = requestAnimationFrame(step)
+      setValue(Math.floor((1 - (1 - progress) ** 3) * target))
+      if (progress < 1) frame = requestAnimationFrame(step)
     }
-    frame.current = requestAnimationFrame(step)
-    return () => cancelAnimationFrame(frame.current)
+    frame = requestAnimationFrame(step)
+    return () => cancelAnimationFrame(frame)
   }, [active, target, duration])
 
   return value
 }
 
-function Metric({ value, suffix, label, active }) {
-  const n = useCountUp(value, 1400, active)
+function Stat({ value, suffix, title, rest, active }) {
+  const n = useCountUp(value, active)
   return (
-    <div className="flex flex-col gap-3">
-      <div className="metric-num">
+    <article className="glass lift flex flex-col" style={{ gap: 18, padding: '36px 32px', borderRadius: 20 }}>
+      <div
+        className="amber-text"
+        style={{ fontSize: 72, lineHeight: 1, fontWeight: 900, letterSpacing: '-.04em' }}
+        aria-label={`${value}${suffix}`}
+      >
         {n}
         {suffix}
       </div>
-      <p className="text-sm leading-relaxed max-w-[220px]" style={{ color: '#64748b' }}>
-        {label}
+      <div style={{ height: 1, background: 'linear-gradient(90deg, rgba(252,190,100,.45), transparent)' }} />
+      <p style={{ margin: 0, fontSize: 17, lineHeight: 1.6, color: 'var(--text)' }}>
+        <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>{title}</strong> {rest}
       </p>
-    </div>
+    </article>
   )
 }
 
-export default function Metrics({ dark }) {
+export default function Metrics() {
   const ref = useRef(null)
   const [active, setActive] = useState(false)
 
   useEffect(() => {
-    const obs = new IntersectionObserver(([entry]) => entry.isIntersecting && setActive(true), {
-      rootMargin: '-10% 0px -10% 0px',
-      threshold: 0.1,
-    })
+    const obs = new IntersectionObserver(([e]) => e.isIntersecting && setActive(true), { threshold: 0.2 })
     if (ref.current) obs.observe(ref.current)
     return () => obs.disconnect()
   }, [])
 
-  const line = dark ? '1px solid rgba(255,255,255,0.05)' : '1px solid rgba(0,0,0,0.06)'
-
   return (
     <section
-      id="metrics"
+      id="impact"
       ref={ref}
-      className="scroll-mt-16"
-      style={{
-        borderTop: line,
-        borderBottom: line,
-        background: dark ? 'rgba(15,16,26,0.6)' : 'rgba(241,245,249,0.6)',
-      }}
+      aria-label="Impact"
+      className="relative overflow-hidden"
+      style={{ padding: '96px clamp(16px, 7vw, 120px)', isolation: 'isolate' }}
     >
-      <div className="max-w-6xl mx-auto px-6 py-20">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 sm:gap-6">
+      <div
+        className="absolute pointer-events-none"
+        aria-hidden="true"
+        style={{
+          zIndex: 0,
+          left: '50%',
+          top: '50%',
+          width: '80%',
+          height: '120%',
+          transform: 'translate(-50%,-50%)',
+          background: 'radial-gradient(closest-side, rgba(234,120,30,.13), transparent)',
+          filter: 'blur(30px)',
+        }}
+      />
+      <div className="hairline" aria-hidden="true" />
+
+      <div className="relative mx-auto flex flex-col" style={{ zIndex: 1, maxWidth: 1200, gap: 40 }}>
+        <div className="eyebrow">
+          <span className="dot" />
+          IMPACT
+          <span style={{ flex: 1, height: 1, background: 'var(--line)' }} />
+        </div>
+        <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: 24 }}>
           {METRICS.map((m) => (
-            <Metric key={m.label} {...m} active={active} />
+            <Stat key={m.title} {...m} active={active} />
           ))}
         </div>
       </div>
